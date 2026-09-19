@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ============================================================
+     Part 2 – ConstraintLayout with Weights
+     使用 ConstraintLayout + 垂直/水平 Chain + Weight 实现相同 UI
+     ============================================================ -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- ========== 垂直 Chain：5 个背景 View 按 weight 分配高度 ========== -->
+
+    <!-- 第 1 区：顶部黑色背景 (weight = 2) -->
+    <View
+        android:id="@+id/topBlackBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/whiteTitleBg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_weight="2" />
+
+    <!-- 第 2 区：白色标题背景 (weight = 1) -->
+    <View
+        android:id="@+id/whiteTitleBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/topBlackBg"
+        app:layout_constraintBottom_toTopOf="@id/colorRow"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_weight="1" />
+
+    <!-- 第 3 区：彩色方块行背景 (weight = 1) -->
+    <View
+        android:id="@+id/colorRow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/whiteTitleBg"
+        app:layout_constraintBottom_toTopOf="@id/middleBlackBg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_weight="1" />
+
+    <!-- 第 4 区：中间黑色背景 (weight = 2) -->
+    <View
+        android:id="@+id/middleBlackBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#000000"
+        app:layout_constraintTop_toBottomOf="@id/colorRow"
+        app:layout_constraintBottom_toTopOf="@id/bottomBarBg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_weight="2" />
+
+    <!-- 第 5 区：底部浅紫色背景 (weight = 1) -->
+    <View
+        android:id="@+id/bottomBarBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#F3E8FF"
+        app:layout_constraintTop_toBottomOf="@id/middleBlackBg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_weight="1" />
+
+    <!-- ========== 文字视图：约束到对应背景上居中 ========== -->
+
+    <!-- Lab 1 -->
+    <TextView
+        android:id="@+id/tvLab1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lab 1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="@id/topBlackBg"
+        app:layout_constraintBottom_toBottomOf="@id/topBlackBg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <!-- Responsive Layout 1 -->
+    <TextView
+        android:id="@+id/tvResponsive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Responsive Layout 1"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="@id/whiteTitleBg"
+        app:layout_constraintBottom_toBottomOf="@id/whiteTitleBg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <!-- Android Application -->
+    <TextView
+        android:id="@+id/tvAndroidApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Application"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="@id/middleBlackBg"
+        app:layout_constraintBottom_toBottomOf="@id/middleBlackBg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <!-- ========== 四个彩色方块：水平 Chain + Weight ========== -->
+
+    <!-- 红色方块 - This -->
+    <TextView
+        android:id="@+id/tvThis"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FF0000"
+        android:gravity="center"
+        android:text="This"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/colorRow"
+        app:layout_constraintBottom_toBottomOf="@id/colorRow"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tvIs"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <!-- 蓝色方块 - is -->
+    <TextView
+        android:id="@+id/tvIs"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#0000FF"
+        android:gravity="center"
+        android:text="is"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/colorRow"
+        app:layout_constraintBottom_toBottomOf="@id/colorRow"
+        app:layout_constraintLeft_toRightOf="@id/tvThis"
+        app:layout_constraintRight_toLeftOf="@id/tvMy"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <!-- 紫色方块 - my -->
+    <TextView
+        android:id="@+id/tvMy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#9955BB"
+        android:gravity="center"
+        android:text="my"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/colorRow"
+        app:layout_constraintBottom_toBottomOf="@id/colorRow"
+        app:layout_constraintLeft_toRightOf="@id/tvIs"
+        app:layout_constraintRight_toLeftOf="@id/tvFirst"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <!-- 黄色方块 - first -->
+    <TextView
+        android:id="@+id/tvFirst"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFFF00"
+        android:gravity="center"
+        android:text="first"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/colorRow"
+        app:layout_constraintBottom_toBottomOf="@id/colorRow"
+        app:layout_constraintLeft_toRightOf="@id/tvMy"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <!-- ========== 底部两个按钮：水平 Chain + Weight ========== -->
+
+    <!-- Change 按钮 -->
+    <Button
+        android:id="@+id/btnChange"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="#673AB7"
+        android:text="Change"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="@id/bottomBarBg"
+        app:layout_constraintBottom_toBottomOf="@id/bottomBarBg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btnCancel"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <!-- Cancel 按钮 -->
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="#673AB7"
+        android:text="Cancel"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="@id/bottomBarBg"
+        app:layout_constraintBottom_toBottomOf="@id/bottomBarBg"
+        app:layout_constraintLeft_toRightOf="@id/btnChange"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_weight="1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
